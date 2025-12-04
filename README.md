@@ -1,30 +1,30 @@
-# HyperPilot HWID Collection Workflow
+# 🚀 HyperPilot HWID Collection Workflow
 
-Automated workflow for collecting AutoPilot Hardware ID (HWID) files from Hyper-V virtual machines.
+Automated workflow for collecting AutoPilot Hardware ID (HWID) files from Hyper-V virtual machines. 💻✨
 
-## Overview
+## 📋 Overview
 
 This PowerShell-based automation tool streamlines the process of collecting AutoPilot HWID CSV files from VMs running in Hyper-V. It handles the entire workflow from copying scripts to the VM, waiting for execution, and retrieving the generated CSV files.
 
-## Features
+## ✨ Features
 
-- **Automated Script Deployment** - Copies HWID collection batch scripts directly to VMs via Hyper-V Guest Services
-- **Interactive VM Selection** - Displays all available VMs with their current state, CPU usage, and memory allocation
-- **Automatic Elevation** - Self-elevates to Administrator privileges when needed
-- **Smart VM Management** - Automatically starts, stops, and restarts VMs as required
-- **VHD Mounting** - Safely mounts VM virtual hard drives in read-only mode to extract files
-- **PowerShell Version Detection** - Works with both Windows PowerShell and PowerShell 7
-- **Comprehensive Error Handling** - Includes retry logic and detailed status messages throughout the process
+- 📤 **Automated Script Deployment** - Copies HWID collection batch scripts directly to VMs via Hyper-V Guest Services
+- 🖱️ **Interactive VM Selection** - Displays all available VMs with their current state, CPU usage, and memory allocation
+- 🔐 **Automatic Elevation** - Self-elevates to Administrator privileges when needed
+- 🎮 **Smart VM Management** - Automatically starts, stops, and restarts VMs as required
+- 💾 **VHD Mounting** - Safely mounts VM virtual hard drives in read-only mode to extract files
+- 🔧 **PowerShell Version Detection** - Works with both Windows PowerShell and PowerShell 7
+- 🛡️ **Comprehensive Error Handling** - Includes retry logic and detailed status messages throughout the process
 
-## Requirements
+## 📦 Requirements
 
-- Windows OS with Hyper-V enabled
-- Administrator privileges (script will auto-elevate)
-- PowerShell 5.1 or higher (PowerShell 7 recommended)
-- Hyper-V Guest Services enabled on target VMs
-- AutoPilot HWID Collection batch script (`AutoPilotHWID-Collection.bat`)
+- 🪟 Windows OS with Hyper-V enabled
+- 🔑 Administrator privileges (script will auto-elevate)
+- ⚡ PowerShell 5.1 or higher (PowerShell 7 recommended)
+- 🔌 Hyper-V Guest Services enabled on target VMs
+- 📄 AutoPilot HWID Collection batch script (`AutoPilotHWID-Collection.bat`)
 
-## Installation
+## 📥 Installation
 
 1. Clone this repository:
    ```powershell
@@ -37,19 +37,19 @@ This PowerShell-based automation tool streamlines the process of collecting Auto
    C:\Autopilot HWID Collection\AutoPilotHWID-Collection.bat
    ```
 
-## Usage
+## 🎯 Usage
 
-### Quick Start (Batch File)
+### ⚡ Quick Start (Batch File)
 
 Simply double-click `HyperPilot-HWID-Workflow.bat` to launch the workflow with default settings.
 
-### PowerShell Direct
+### 💻 PowerShell Direct
 
 ```powershell
 .\HyperPilot-HWID-Workflow.ps1
 ```
 
-### Advanced Usage with Parameters
+### 🔧 Advanced Usage with Parameters
 
 ```powershell
 # Specify a specific VM
@@ -68,23 +68,23 @@ Simply double-click `HyperPilot-HWID-Workflow.bat` to launch the workflow with d
 .\HyperPilot-HWID-Workflow.ps1 -VMName "TestVM" -DestinationPath "C:\Output"
 ```
 
-## Workflow Process
+## 🔄 Workflow Process
 
 The script performs the following steps automatically:
 
-### Phase 1: Copy Scripts TO VM
+### 📤 Phase 1: Copy Scripts TO VM
 1. Lists all available VMs (if no VM name provided)
 2. Displays VM status, CPU usage, and memory
 3. Starts the VM if not already running
 4. Enables Hyper-V Guest Services
 5. Copies the HWID collection script(s) to the VM
 
-### Phase 2: Manual Execution
+### ⏸️ Phase 2: Manual Execution
 - Pauses and prompts you to run the batch file on the VM
 - Wait for the script to complete on the VM
 - Press Enter to continue to Phase 3
 
-### Phase 3: Collect Files FROM VM
+### 📥 Phase 3: Collect Files FROM VM
 1. Stops the VM safely
 2. Mounts the VM's VHD in read-only mode
 3. Assigns a temporary drive letter
@@ -93,7 +93,7 @@ The script performs the following steps automatically:
 6. Dismounts the VHD
 7. Restarts the VM
 
-## Parameters
+## ⚙️ Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -103,7 +103,7 @@ The script performs the following steps automatically:
 | `SourceFolder` | String | `HWID` | Folder on the VM to search for HWID files |
 | `DestinationPath` | String | `C:\Autopilot HWID Collection` | Local destination for collected files |
 
-## Output
+## 📊 Output
 
 Upon successful completion, the script displays:
 - Number of files copied to the VM
@@ -127,7 +127,7 @@ VM Status:            Running
 Your HWID files are ready at: C:\Autopilot HWID Collection
 ```
 
-## Error Handling
+## 🛡️ Error Handling
 
 The script includes comprehensive error handling:
 - **VM Not Found** - Validates VM exists before proceeding
@@ -136,34 +136,34 @@ The script includes comprehensive error handling:
 - **Drive Letter Assignment** - Finds available drive letters and verifies accessibility
 - **Timeout Protection** - Includes timeouts for VM start/stop operations
 
-## Troubleshooting
+## 🔍 Troubleshooting
 
-### Guest Services Issues
+### 🔌 Guest Services Issues
 If files fail to copy to the VM:
 1. Ensure Hyper-V Guest Services are enabled on the VM
 2. Verify the VM is fully booted and responsive
 3. Check that the VM has sufficient disk space
 
-### VHD Mount Failures
+### 💾 VHD Mount Failures
 If VHD mounting fails:
 1. Ensure no other processes are accessing the VHD
 2. Wait a few seconds and retry
 3. Manually dismount stuck VHDs: `Dismount-VHD -Path "path\to\disk.vhdx"`
 
-### No Files Found
+### 📁 No Files Found
 If no HWID files are found:
 1. Verify the AutoPilot script ran successfully on the VM
 2. Check the `SourceFolder` parameter matches where files were saved
 3. Confirm the `SearchPattern` matches your file naming
 
-## License
+## 📜 License
 
 This project is provided as-is for AutoPilot HWID collection workflows.
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Author
+## 👨‍💻 Author
 
 Created for streamlining AutoPilot HWID collection in Hyper-V environments.
