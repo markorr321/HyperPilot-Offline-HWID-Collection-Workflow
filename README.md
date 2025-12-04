@@ -37,6 +37,40 @@ This PowerShell-based automation tool streamlines the process of collecting Auto
    C:\Autopilot HWID Collection\AutoPilotHWID-Collection.bat
    ```
 
+## 📂 Output Folder Configuration
+
+By default, collected HWID files are saved to:
+```
+C:\Autopilot HWID Collection
+```
+
+You have two options to set this up:
+
+### Option 1: Create the Default Folder ✅ (Recommended)
+
+Simply create the folder before running the script:
+```powershell
+New-Item -Path "C:\Autopilot HWID Collection" -ItemType Directory -Force
+```
+
+Or manually create the folder `Autopilot HWID Collection` in your C:\ drive.
+
+### Option 2: Customize the Output Path 🔧
+
+Modify the script to use a different location by editing line 24 in `HyperPilot-HWID-Workflow.ps1`:
+
+```powershell
+# Change this line:
+[string]$DestinationPath = "C:\Autopilot HWID Collection"
+
+# To your preferred path:
+[string]$DestinationPath = "C:\YourCustomFolder"
+```
+
+Or use the `-DestinationPath` parameter when running the script (see Advanced Usage below).
+
+> **Note:** The script will automatically create the destination folder if it doesn't exist, but you may want to pre-create it with appropriate permissions.
+
 ## 🎯 Usage
 
 ### ⚡ Quick Start (Batch File)
